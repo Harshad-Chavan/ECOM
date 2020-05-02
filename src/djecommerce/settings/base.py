@@ -2,10 +2,8 @@
 import os
 from decouple import config
 
-# print("1" + os.path.abspath(__file__))
-# print("2" +os.path.dirname(os.path.abspath(__file__)))
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
-# print("3" +BASE_DIR)
+
 
 SECRET_KEY = config('SECRET_KEY')
 
@@ -17,6 +15,12 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    ######allauth apps######
+    'django.contrib.sites',
+    'allauth',
+    'allauth.account',
+    'allauth.socialaccount',
+    ########################
     'core',
     
 ]
@@ -75,3 +79,14 @@ MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(VENV_PATH,'media')
 
 
+# allauth changes
+AUTHENTICATION_BACKENDS = (
+    # Needed to login by username in Django admin, regardless of `allauth`
+    'django.contrib.auth.backends.ModelBackend',
+
+    # `allauth` specific authentication methods, such as login by e-mail
+    'allauth.account.auth_backends.AuthenticationBackend',
+
+)
+
+SITE_ID = 1
