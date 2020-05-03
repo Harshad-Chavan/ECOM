@@ -25,6 +25,7 @@ class Item(models.Model):
     discount_price = models.FloatField(blank=True,null=True)
     category = models.CharField(choices=Category_choices,max_length=2)
     label = models.CharField(choices=Label_choices,max_length=1)
+    description = models.TextField()
     slug = models.SlugField()
 
 
