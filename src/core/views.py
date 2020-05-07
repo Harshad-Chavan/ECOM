@@ -17,10 +17,11 @@ class ItemDetailView(DetailView):
     model = Item
     template_name = "product-page.html"
 
+@login_required
 def checkout_page(request):
     return render(request,"checkout-page.html",{})
 
-
+@login_required
 def add_to_cart(request,slug):
     item = get_object_or_404(Item,slug=slug)
     order_item ,created= OrderItem.objects.get_or_create(item=item,user=request.user,ordered=False)
@@ -44,7 +45,7 @@ def add_to_cart(request,slug):
         return redirect('core:order_summary')
 
 
-
+@login_required
 def remove_from_cart(request,slug):
     item = get_object_or_404(Item,slug=slug)
     order_qs = Order.objects.filter(user=request.user,ordered=False)
@@ -64,7 +65,7 @@ def remove_from_cart(request,slug):
         messages.info(request,"you do not have active order")
         return redirect('core:product-page',slug=slug)
 
-
+@login_required
 def remove_single_item_from_cart(request,slug):
     item = get_object_or_404(Item,slug=slug)
     order_qs = Order.objects.filter(user=request.user,ordered=False)
