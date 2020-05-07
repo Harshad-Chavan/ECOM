@@ -1,0 +1,58 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+  <!--Main layout-->
+  <main>
+    <div class="container">
+    <div class="table-responsive text-nowrap">
+    <h2>Order Summary</h2>
+    <table class="table table-hover">
+        <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Item Title</th>
+            <th scope="col">Item Price</th>
+            <th scope="col">Item Discount Price</th>
+            <th scope="col">Quantity</th>
+            <th scope="col">Total item Price</th>
+            
+        </tr>
+        </thead>
+        <tbody>
+        {% for order_item in object.items.all %}
+        <tr>
+            
+            <th scope="row">{{ forloop.counter }}</th>
+            <td> {{ order_item.item.title }}</td>
+            <td>{{ order_item.item.price }}</td>
+            <td>{{ order_item.item.discount_price }}</td>
+            <td>{{ order_item.quantity }}</td>
+            {% if order_item.item.discount_price %}
+            <td>
+            ${{ order_item.get_total_discount_item_price }} 
+            <span class="badge badge-danger"> saved ${{ order_item.get_price_difference }}</span>
+            </td>
+            {% else %}
+            <td>${{ order_item.get_total_item_price }}</td>
+            {% endif %}
+        </tr>
+        {% endfor %}
+        <tr>
+            <td colspan='5'><h2>Order total</h2></td>
+            <td> <h2>${{ object.get_total }}</h2></td>
+        </tr>
+        <tr>
+            <td colspan='6'>
+            <a class='btn btn-warning float-right ml-4' href='/checkout/'>Proceed to checkout</a>
+            <a class='btn btn-primary float-right' href='/'>Continue shopping</a>
+        </td>
+        </tr>
+              </tbody>
+    </table>
+
+</div>
+    </div>
+  </main>
+  <!--Main layout-->
+{% endblock content %}
+  
