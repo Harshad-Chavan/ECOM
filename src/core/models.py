@@ -6,7 +6,9 @@ from django_countries.fields import CountryField
 Category_choices = (
                     ('S','Shirt'),
                     ('SW','Sport Wear'),
-                    ('OW','Out wear')
+                    ('OW','Out wear'),
+                    ('G','Gases'),
+                    ('C','Chemicals'),
 
                 )
 
@@ -26,6 +28,8 @@ class Item(models.Model):
     category = models.CharField(choices=Category_choices,max_length=2)
     label = models.CharField(choices=Label_choices,max_length=1)
     description = models.TextField()
+    image_name = models.CharField(max_length=100)
+    availability = models.IntegerField(null=True)
     slug = models.SlugField()
     
 

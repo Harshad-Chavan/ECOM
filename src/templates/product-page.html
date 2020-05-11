@@ -4,7 +4,7 @@
 
 
   <!--Main layout-->
-  <main class="mt-5 pt-4">
+  <main class="mt-1 pt-4">
     <div class="container dark-grey-text mt-5">
 
       <!--Grid row-->
@@ -13,7 +13,7 @@
         <!--Grid column-->
         <div class="col-md-6 mb-4">
 
-          <img src="https://mdbootstrap.com/img/Photos/Horizontal/E-commerce/Products/14.jpg" class="img-fluid" alt="">
+          <img src="{% static object.image_name %}" width="800" height="800" class="img-fluid" alt="">
 
         </div>
         <!--Grid column-->
@@ -55,12 +55,22 @@
               </button>
 
             </form> {% endcomment %}
-          <a href="{{ object.get_add_to_cart_url }}" class="btn btn-primary btn-md my-0 p">Add to cart
+            {% if object.availability > 0 %}
+            <a href="{{ object.get_add_to_cart_url }}" class="btn btn-primary btn-md my-0 p">Add to cart
                 <i class="fas fa-shopping-cart ml-1"></i>
               </a>
-          <a href="{{ object.get_remove_from_cart_url }}" class="btn btn-danger btn-md my-0 p">remove from cart
+            <a href="{{ object.get_remove_from_cart_url }}" class="btn btn-danger btn-md my-0 p">remove from cart
+                <i class="fas fa-shopping-cart ml-1"></i>
+            </a>
+            {% else %}
+            <a href="{{ object.get_add_to_cart_url }}" class="btn btn-primary btn-md my-0 p disabled">Add to cart
                 <i class="fas fa-shopping-cart ml-1"></i>
               </a>
+            <a href="{{ object.get_remove_from_cart_url }}" class="btn btn-danger btn-md my-0 p disabled">remove from cart
+                <i class="fas fa-shopping-cart ml-1"></i>
+                </a>
+            {% endif %}
+          
           </div>
           <!--Content-->
 

@@ -28,14 +28,12 @@
               </a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#">Shirts</a>
+              <a class="nav-link" href="#">Gases</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#">Sport wears</a>
+              <a class="nav-link" href="#">Chemicals</a>
             </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">Outwears</a>
-            </li>
+            
 
           </ul>
           <!-- Links -->
@@ -65,7 +63,7 @@
 
               <!--Card image-->
               <div class="view overlay">
-                <img src="https://mdbootstrap.com/img/Photos/Horizontal/E-commerce/Vertical/12.jpg" class="card-img-top"
+                <img src="{% static item.image_name %}" class="card-img-top"
                   alt="">
                 <a href="{{ item.get_absolute_url }}">
                   <div class="mask rgba-white-slight"></div>
@@ -86,16 +84,19 @@
                     </a>
                   </strong>
                 </h5>
-
-                <h4 class="font-weight-bold blue-text">
+              {% if item.availability == 0 %}
+                <h4 class="font-weight-bold red-text">
+                Item out of stock
+                </h4>
+              {% else %}
+              <h4 class="font-weight-bold blue-text">
                 {% if item.discount_price %}
                 <strong>{{item.discount_price}}$</strong>
                 {% else %}
                 <strong>{{item.price}}$</strong>
                 {% endif %}
-                  
-                </h4>
-
+              </h4>
+              {% endif %}
               </div>
               <!--Card content-->
 
