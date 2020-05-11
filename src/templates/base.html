@@ -9,6 +9,7 @@
   <meta http-equiv="x-ua-compatible" content="ie=edge">
   
   <title>{% block head_title %}{% endblock %}</title>
+  <link rel="shortcut icon" type="image/png" href="{% static 'favicon.ico' %}"/>
     {% block extra_head %}
     {% endblock %}
   <!-- Font Awesome -->
@@ -59,7 +60,8 @@
 
       <!-- Brand -->
       <a class="navbar-brand waves-effect" href="{% url 'core:home-page' %}">
-        <strong class="blue-text">Dje-commerce</strong>
+        <img src="{% static 'favicon.ico' %}" width="30" height="30" alt="">
+        <strong class="blue-text">Modern Chemicals</strong>
       </a>
 
       <!-- Collapse -->
