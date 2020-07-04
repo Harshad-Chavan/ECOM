@@ -21,7 +21,7 @@ DATABASES = {
 
 
 def show_toolbar(request):
-    return True
+    return False
 
 DEBUG_TOOLBAR_CONFIG = {
     'INTERCEPT_REDIRECTS':False,
